@@ -26,7 +26,7 @@ function generatePerfectSonority(voiceCount: number): Note<1>[] {
 }
 
 
-function createFromNotes(voices: Voice[], notesSingle: Note<NoteLength>[]): PossibleSonority {
+function generatePossibleSonority(voices: Voice[], notesSingle: Note<NoteLength>[]): PossibleSonority {
     const possibleSonority: PossibleSonority = []
     for(let i = 0; i < notesSingle.length; i++){
         for(let j = i+1; j < notesSingle.length; j++){
@@ -49,7 +49,7 @@ const generatePossibleSonorities: (measureIndex: number, voices: Voice[]) => Pos
     const generate = (notes: Note<NoteLength>[][], currIndex: number = 0): PossibleSonority[] => {
         if(currIndex == notes.length){
             const notesSingle = notes.flatMap(n => n)
-            const sonority: PossibleSonority = createFromNotes(voices, notesSingle)
+            const sonority: PossibleSonority = generatePossibleSonority(voices, notesSingle)
             return [sonority]
         }
         // foreach: note in top non-singular notes: generate
@@ -90,9 +90,7 @@ function waveCollapsePrepare(voices: Voice[]): {voices: Voice[], quads: NoteQuad
 
     let sonoritiesLength = intervalMap.map(p => p.length).reduce((p, n)=>p+n);
     const formatSonority = (p: PossibleSonority) => p.map(i => [i.interval.noteTuple.lower.scaleDegree.number, i.interval.noteTuple.upper.scaleDegree.number])
-    //intervalMap[5] = intervalMap[5].filter(i => Math.random() < 0.8)
 
-    //console.log(intervalMap.flatMap(ps => ps).slice(0,5).map(formatSonority))
     console.log("Sonorities length " + sonoritiesLength)
     console.log("Avg per measure " + sonoritiesLength / voices[0].measures.length)
 

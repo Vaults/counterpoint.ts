@@ -33,10 +33,13 @@ type Note<NoteLength> = {
     length: NoteLength
 }
 
-//type FirstSpeciesMeasure = {notes: Note<1>[]}
-/*type SecondSpeciesMeasure = {notes: Note<2>[]}
+/*
+-- Note that it was meant to support multi-notelength measures at first
+type FirstSpeciesMeasure = {notes: Note<1>[]}
+type SecondSpeciesMeasure = {notes: Note<2>[]}
 type ThirdSpeciesMeasure = {notes: Note<4>[]}
-type FourthSpeciesMeasure = {notes: Note<1>[]}*/
+type FourthSpeciesMeasure = {notes: Note<1>[]}
+*/
 type FifthSpeciesMeasure = {notes: Note<NoteLength>[]}
 type Measure = FifthSpeciesMeasure // FirstSpeciesMeasure //| SecondSpeciesMeasure | ThirdSpeciesMeasure | FourthSpeciesMeasure | FifthSpeciesMeasure
 
@@ -54,6 +57,10 @@ type IntervalMap = PossibleSonority[][]
 
 type NoteQuad = {left: Interval, right: Interval, leftIndex: number, rightIndex: number}
 type NoteQuadRow = {top: Voice, bottom: Voice, quads: NoteQuad[]}
+/*
+    ScaleDegree was meant to embed more metadata about the degree like sharpening/flattening for instance.
+    This would also render interval calculation more complete than just diatonic ones.
+ */
 class ScaleDegree {
     number: number
     constructor(number: number) {

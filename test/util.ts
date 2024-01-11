@@ -1,4 +1,3 @@
-// tests/calculator.spec.tx
 import { assert } from "chai";
 import {createEmptyVoice, getNoteAmount, getPowerset, toQuads, toVoicepair} from "@/util";
 import {Measure, Note, NoteLength, NoteQuad, ScaleDegree, Voice} from "@/strict/types";

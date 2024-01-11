@@ -1,4 +1,3 @@
-// tests/calculator.spec.tx
 import { assert } from "chai";
 import {Interval, Note, NoteLength, ScaleDegree} from "@/strict/types";
 import { createInterval } from "@/strict/interval-calc";

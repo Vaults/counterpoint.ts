@@ -27,10 +27,13 @@ const CounterpointConstraints: CounterpointConstraint[] = [
 /*    (left, right) => {
         const bothPerfect = left.perfect && right.perfect
         return !(bothPerfect && !(left.sameClass && right.sameClass))
-    },*/
+    },
+*/
 ]
 
 /*
+-- The original idea was to work with QuadRows at first.
+
 function propagateQuadRow(row: NoteQuadRow, voices: Voice[]) {
     const top: Voice = voices.find(v => v == row.top)!
     const bottom: Voice = voices.find(v => v == row.bottom)!
@@ -102,7 +105,7 @@ function excludeAllSameSonorities(prev: PossibleSonority[], next: PossibleSonori
 }
 
 function propagateIntervalMap(intervalMap: IntervalMap, voices: Voice[]) {
-    // Voice => Interval prune
+    // Prune intervals based on congruent intervals
     voices.forEach((v, i) => {
         v.measures.forEach((m, mi) => {
             const possibleSonorities = intervalMap[mi]
@@ -117,7 +120,7 @@ function propagateIntervalMap(intervalMap: IntervalMap, voices: Voice[]) {
         })
     })
 
-    // Prune based on interval logic
+    // Prune sonorities based on interval logic
     intervalMap.forEach((possibleSonorities, i) => {
         // Do interval pruning based on interval constraints
         possibleSonorities = possibleSonorities
@@ -129,7 +132,7 @@ function propagateIntervalMap(intervalMap: IntervalMap, voices: Voice[]) {
         intervalMap[i] = possibleSonorities
     })
 
-    //Prune based on counterpoint logic.. lezzgoooo😤😤
+    //Prune sonorities based on counterpoint logic.. lezzgoooo😤😤
     //fuck
     intervalMap.forEach((_, i) => {
         if(i > 0) {
@@ -142,7 +145,7 @@ function propagateIntervalMap(intervalMap: IntervalMap, voices: Voice[]) {
 
 
 
-    // Interval => Voice prune
+    // Prune voices based on remaining congruent intervals
     // my ass is heavy
     const newVoices = voices.map((v, vi) => {
         let newVoice = new Voice(Array(v.measures.length).fill('').map(_ => ({notes: []})))

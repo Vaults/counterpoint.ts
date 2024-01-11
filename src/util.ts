@@ -35,7 +35,7 @@ function intersectVoice(real: Voice, ephemeral: Voice) {
 function toVoicepair(quadRow: NoteQuadRow): Voice[]{
     const top =  new Voice(Array(quadRow.top.measures.length).fill('').map(_ => ({notes: []})))
     const bottom =  new Voice(Array(quadRow.bottom.measures.length).fill('').map(_ => ({notes: []})))
-    //console.log(quadRow.quads.length)
+
     quadRow.quads.forEach(q => {
         top.measures[q.leftIndex].notes.push(q.left.noteTuple.upper)
         top.measures[q.rightIndex].notes.push(q.right.noteTuple.upper)
