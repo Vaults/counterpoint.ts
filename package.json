@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "test": "tsc; mocha -r ts-node/register -r tsconfig-paths/register \"test/**/*.ts\"",
+    "start": "tsc; NODE_OPTIONS=--max_old_space_size=16384 npx ts-node src/main.ts",
+    "compile": "tsc"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.11",
+    "@types/mocha": "^10.0.6",
+    "chai": "^4.3.10",
+    "mocha": "^10.2.0",
+    "ts-mocha": "^10.0.0",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.3.2"
+  },
+  "dependencies": {
+    "istanbul": "^0.4.5"
+  }
+}
